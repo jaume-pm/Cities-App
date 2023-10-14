@@ -4,24 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     RecyclerView recycler_cities;
+    CitiesAdapter cities_adapter;
+    ArrayList<City> cities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recycler_cities = findViewById(R.id.rec_cities);
-
         startDataBase();
         updateRecycler();
 
@@ -30,12 +33,28 @@ public class MainActivity extends AppCompatActivity {
     private void updateRecycler(){
         ArrayList<City> cities = getCities();
         recycler_cities.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recycler_cities.setAdapter(new CitesAdapter(getApplicationContext(), cities));
+        cities_adapter = new CitiesAdapter(getApplicationContext(), cities);
+        cities_adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToItemDescription(view);
+            }
+        });
+        recycler_cities.setAdapter(cities_adapter);
+    }
+
+    private void goToItemDescription(View view) {
+        Intent intent = new Intent(MainActivity.this, ItemDescription.class);
+        intent.putExtra("english_name", cities.get(recycler_cities.getChildAdapterPosition(view)).getEnglish_name());
+        intent.putExtra("original_name", cities.get(recycler_cities.getChildAdapterPosition(view)).getOriginal_name());
+        intent.putExtra("description", cities.get(recycler_cities.getChildAdapterPosition(view)).getDescription());
+        intent.putExtra("icon", cities.get(recycler_cities.getChildAdapterPosition(view)).getIcon());
+        startActivity(intent);
     }
 
     private ArrayList<City> getCities(){
-        ArrayList<City> cities = new ArrayList<City>();
         String[] columns = {"english_name", "original_name", "description", "image"};
+         cities = new ArrayList<City>();
 
         Cursor cursor = db.query("cities", columns, null, null, null, null, null);
 
@@ -58,6 +77,21 @@ public class MainActivity extends AppCompatActivity {
         }
         return cities;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRecycler();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            updateRecycler();
+        }
+    }
+
 
     private void startDataBase() {
         db = openOrCreateDatabase("cities.db", MODE_PRIVATE, null);
@@ -103,5 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 "City with rich history and diverse culture.', " + R.drawable.london + ")");
 
     }
+
+
 
 }
