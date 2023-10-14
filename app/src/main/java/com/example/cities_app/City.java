@@ -1,10 +1,10 @@
 package com.example.cities_app;
 
-public class city {
+public class City {
     String original_name, english_name, description;
     int icon;
 
-    public city(String original_name, String english_name, String description, int icon) {
+    public City(String original_name, String english_name, String description, int icon) {
         this.original_name = original_name;
         this.english_name = english_name;
         this.description = description;

@@ -12,9 +12,9 @@ import java.util.List;
 public class CitesAdapter extends RecyclerView.Adapter<CitiesViewHolder> {
 
     Context context;
-    List<city> cities;
+    List<City> cities;
 
-    public CitesAdapter(Context context, List<city> cities) {
+    public CitesAdapter(Context context, List<City> cities) {
         this.context = context;
         this.cities = cities;
     }
