@@ -35,13 +35,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_icon" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_back"
-        android:layout_width="82dp"
-        android:layout_height="45dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
+        android:background="@android:drawable/ic_menu_revert"
+        android:backgroundTint="#ff6750a4"
         android:text="back"
+        android:tint="@android:color/holo_purple"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,15 +26,12 @@ import java.io.InputStream;
 public class EditCity extends AppCompatActivity {
 
     SQLiteDatabase db;
-
     ImageView v_icon;
     EditText v_english_name, v_original_name, v_description;
-
-    Button btn_back, btn_apply_changes, btn_change_image;
+    Button btn_apply_changes, btn_change_image;
+    ImageButton btn_back;
     Intent intent;
-
     String in_english_name, in_original_name, in_description, in_mode, out_english_name;
-
     Bitmap in_icon;
 
     @Override
@@ -69,9 +67,6 @@ public class EditCity extends AppCompatActivity {
             case "edit":
                 in_english_name = intent.getStringExtra("english_name");
                 out_english_name = in_english_name;
-
-              //  btn_apply_changes.setText("Apply changes");
-               // btn_change_image.setText("Change image");
                 updateInfo();
                 break;
             case "create":

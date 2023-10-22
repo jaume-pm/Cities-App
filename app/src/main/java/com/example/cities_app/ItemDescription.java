@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
@@ -24,7 +25,8 @@ public class ItemDescription extends AppCompatActivity {
     ImageView v_icon;
     TextView v_english_name, v_original_name, v_description;
 
-    Button btn_back, btn_delete, btn_edit;
+    Button btn_delete, btn_edit;
+    ImageButton btn_back;
     Intent intent;
 
     String in_english_name, in_original_name, in_description;
@@ -97,7 +99,7 @@ public class ItemDescription extends AppCompatActivity {
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User clicked No button
-                        // Do nothing or handle the cancellation
+                        // Do nothing
                     }
                 })
                 .show();
