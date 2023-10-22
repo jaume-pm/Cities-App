@@ -1,10 +1,12 @@
 package com.example.cities_app;
 
+import android.graphics.Bitmap;
+
 public class City {
     String original_name, english_name, description;
-    int icon;
+    Bitmap icon;
 
-    public City(String original_name, String english_name, String description, int icon) {
+    public City(String original_name, String english_name, String description, Bitmap icon) {
         this.original_name = original_name;
         this.english_name = english_name;
         this.description = description;
@@ -23,7 +25,7 @@ public class City {
         return description;
     }
 
-    public int getIcon() {
+    public Bitmap getIcon() {
         return icon;
     }
 }

@@ -36,7 +36,7 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesViewHolder>
         holder.english_name.setText(cities.get(position).getEnglish_name());
         holder.original_name.setText(cities.get(position).getOriginal_name());
         holder.description.setText(cities.get(position).getDescription());
-        holder.icon.setImageResource(cities.get(position).getIcon());
+        holder.icon.setImageBitmap(cities.get(position).getIcon());
     }
 
     @Override
@@ -45,7 +45,6 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesViewHolder>
     }
 
     public void setOnClickListener(View.OnClickListener listener){
-
         this.listener = listener;
     }
 
